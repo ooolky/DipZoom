@@ -13,82 +13,109 @@ import os
 class Window(QWidget):
 	def __init__(self):
 		super().__init__()
-		self.setWindowTitle('QLineEdit-使用')
+		#窗口大小
 		self.resize(1000,800)
 		self.setFixedSize(1000,800)
+		#窗口标题
 		self.setWindowTitle("DipZoom")
+		#窗口背景图
+		palette = QPalette()
+		palette.setBrush(QPalette.Background, QBrush(QPixmap("background.jpg").scaled(self.width(),self.height())))
+		self.setPalette(palette)
+		#全局字体
+		self.setFont(QFont(None,12))
+
 		self.setup_ui()
-	
+
 	def setup_ui(self):
+        #按钮
 		btn_open = QPushButton(self)
+		#文本
 		btn_open.setText('打开图片')
+		#坐标
 		btn_open.move(250, 50)
+		#透明
+		btn_open.setFlat(True)
 		
 		btn_cancel = QPushButton(self)
 		btn_cancel.setText('退出程序')
 		btn_cancel.move(650, 50)
+		btn_cancel.setFlat(True)
 
 		btn_save= QPushButton(self)
 		btn_save.setText('保存图片')
 		btn_save.move(450, 50)
+		btn_save.setFlat(True)
 
 		btn_translation= QPushButton(self)
 		btn_translation.setText('平移图片')
 		btn_translation.move(150, 600)
+		btn_translation.setFlat(True)
 
 		btn_zoom= QPushButton(self)
 		btn_zoom.setText('缩放图片')
 		btn_zoom.move(300, 600)
-
-		btn_cut= QPushButton(self)
-		btn_cut.setText('裁剪图片')
-		btn_cut.move(450, 600)
+		btn_zoom.setFlat(True)
 
 		btn_reversal= QPushButton(self)
 		btn_reversal.setText('翻转图片')
-		btn_reversal.move(600, 600)
+		btn_reversal.move(450, 600)
+		btn_reversal.setFlat(True)
+
+		btn_cut= QPushButton(self)
+		btn_cut.setText('裁剪图片')
+		btn_cut.move(600, 600)
+		btn_cut.setFlat(True)
 
 		btn_gray = QPushButton(self)
 		btn_gray.setText('灰度图')
 		btn_gray.move(750, 600)
-
-		btn_gradient= QPushButton(self)
-		btn_gradient.setText('梯度运算')
-		btn_gradient.move(150, 700)
+		btn_gray.setFlat(True)
 
 		btn_filter = QPushButton(self)
-		btn_filter.setText('中值滤波')
-		btn_filter.move(300, 700)
+		btn_filter.setText('平滑滤波')
+		btn_filter.move(150, 700)
+		btn_filter.setFlat(True)
+
+		btn_gradient= QPushButton(self)
+		btn_gradient.setText('轮廓提取')
+		btn_gradient.move(300, 700)
+		btn_gradient.setFlat(True)
 
 		btn_tophat = QPushButton(self)
-		btn_tophat.setText('礼帽操作')
+		btn_tophat.setText('噪声提取')
 		btn_tophat.move(450, 700)
+		btn_tophat.setFlat(True)
 
 		btn_segmentation = QPushButton(self)
-		btn_segmentation.setText('otsu分割')
+		btn_segmentation.setText('图片分割')
 		btn_segmentation.move(600, 700)
+		btn_segmentation.setFlat(True)
 
 		btn_edge = QPushButton(self)
-		btn_edge.setText('canny边缘检测')
+		btn_edge.setText('边缘检测')
 		btn_edge.move(750, 700)
+		btn_edge.setFlat(True)
 
+		#图片展示区域
 		label_left = QLabel(self)
+		#大小
 		label_left.setFixedSize(400, 400)
+		#坐标
 		label_left.move(50, 150)
-		label_left.setStyleSheet("QLabel{background:white;}"
-								 "QLabel{color:white;font-size:10px;font-weight:bold;font-family:宋体;}"
-								 )
+		#透明
+		label_left.setStyleSheet("QLabel{background:none;}")
 
 		label_right = QLabel(self)
 		label_right.setFixedSize(400, 400)
 		label_right.move(550, 150)
-		label_right.setStyleSheet("QLabel{background:white;}"
-								 "QLabel{color:white;font-size:10px;font-weight:bold;font-family:宋体;}"
-								 )
+		label_right.setStyleSheet("QLabel{background:none;}")
 
 		label_mid = QLabel(self)
 		label_mid.setFixedSize(50, 200)
-		label_mid.move(475, 250)		 
+		label_mid.move(475, 250)
+		label_mid.setStyleSheet("QLabel{background:none;}"
+								 "QLabel{color:black;font-size:25px;}" )				 
 
 		def cancel():
 			exit(0)
